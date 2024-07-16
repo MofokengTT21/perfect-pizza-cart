@@ -40,7 +40,12 @@ b {
 .contact_us {
     background-color: #965FE3;
 }
+@media (min-width: 960px) {
 
+    .pizzas {
+        display: flex;
+    }
+}
 .addToCart {
     margin-top:5em;
 }
