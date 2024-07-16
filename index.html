@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PerfectPizza</title>
+  <link rel="stylesheet" href="styles.css" />
+  <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+  <script src="script.js" defer></script>
+</head>
+
+<body>
+  <h1>Perfect <span class="h-pizza">Pizza</span></h1>
+<div x-data="{
+  small:0, medium:0, largee:0, Grandtotal:0,
+  smallPizzaImg: './resources/pizza1.png', 
+  mediumPizzaImg: './resources/pizza2.png', 
+  largePizzaImg: './resources/pizza3.png',
+  get total(){ return (this.small * 49.00 + this.medium * 89.00 + this.largee * 129.00 ).toFixed(2)},
+  checkout: false,
+  paid:''}">
+  <div class="pizzaz">
+    <div style="text-align: center; font-weight: bold">Shopping Cart</div>
+    <div class="shopping-cart">
+      <div class="show-shopping-cart" x-show="small !=0 || medium !=0 || large !=0">
+        <h4>Pizza orders:</h4>
+        <template x-if="small > 0">
+          <div class="cart-list">
+            <img class="cart-images" :src="smallPizzaImg">
+            <div class="cart-list">
+              <div class="pizza-description">
+                <h4>Small Pizza:</h4>
+                <p class="cart-description">Menu, Value Pizza</p>
+              </div>
+              <div class="cart-list ">
+                <button x-show="!checkout" class="quantity" @click="small--">-</button>
+                <p style="padding: 6px;" x-text="small"></p>
+                <button x-show="!checkout" class="quantity" @click="small++">+</button>
+              </div>
+              <div style="margin-left: 3em;">
+                <b>R<span x-text="(small * 80.00).toFixed(2)"></span></b>
+              </div>
+
+            </div>
+          </div>
+        </template>
+        <template x-if="medium > 0">
+          <div class="cart-list">
+            <img class="cart-images" :src="mediumPizzaImg">
+            <div class="cart-list">
+              <div class="pizza-description">
+                <h4>Medium Pizza:</h4>
+                <p class="cart-description">Traditional Pizza</p>
+              </div>
+              <div class="cart-list ">
+                <button x-show="!checkout" class="quantity" @click="medium--">-</button>
+                <p style="padding: 6px;" x-text="medium"></p>
+                <button x-show="!checkout" class="quantity" @click="medium++">+</button>
+              </div>
+              <div style="margin-left: 3em;">
+                <b>R<span x-text="(medium * 89.00).toFixed(2)"></span></b>
+              </div>
+
+            </div>
+          </div>
+        </template>
+        <template x-if="largee> 0">
+          <div class="cart-list">
+            <img class="cart-images" :src="largePizzaImg">
+            <div class="cart-list">
+              <div class="pizza-description">
+                <h4>Large Pizza:</h4>
+                <p class="cart-description">Chef's Best, Menu</p>
+              </div>
+              <div class="cart-list ">
+                <button x-show="!checkout" class="quantity" @click="largee--">-</button>
+                <p style="padding: 6px;" x-text="largee"></p>
+                <button x-show="!checkout" class="quantity" @click="largee++">+</button>
+              </div>
+              <div style="margin-left: 3em;">
+                <b>R<span x-text="(largee * 129.00).toFixed(2)"></span></b>
+              </div>
+            </div>
+          </div>
+        </template>
+        <div style="display: flex; margin:20px 0 0;">
+        <template x-if="!checkout">
+          <button style="margin-right: 20px;" class="checkout-button" @click="checkout=!checkout">Checkout</button>
+      </template>
+      <p   class="total"> Total: <b >R <span x-text="total"></span></b></p>
+    </div>
+    <template x-if="checkout">
+      <label><input 
+          type="number" 
+          min="0" 
+          step="0.00"
+          placeholder="Enter Amount to Pay"
+          x-model="paid" /></label>
+  </template>
+  <template x-if="paid == total && checkout">
+    <!-- <br> -->
+    <span>
+        <div style="color: rgb(15, 15, 15)"></div>
+        <button class="Mdesign AW Bdesign" @click="small=0; medium=0; large=0; checkout=false;">
+            Complete Order
+        </button>
+    </span>
+</template>
+<template x-if="(parseInt(paid) < total && paid != total && checkout)">
+    <!-- <br> -->
+    <span>
+        <div style="color: #e70909;">
+            <h2><b>Not enough money</b></h2>
+
+        </div >
+        <div class="addToCart">
+        <button class="exit-button" @click="small=0; medium=0; large=0; checkout=false;" >
+            <b>Exit Cart</b>
+        </button>
+        </div>
+    </span>
+</template>
+<template x-if="parseInt(paid) > total && checkout">
+  <div>
+    <br>
+      <div style="color: rgb(15, 15, 15)"><b>Change: R<span
+        x-text="(parseInt(paid) - total).toFixed(2)"></span></b>
+      </div>
+      <br>
+      <button class="pay-button" @click="small=0; medium=0; large=0; checkout=false; paid=''" style="padding: 7px;">
+          <b>Pay</b>
+      </button>
+    </div>
+</template>
+      </div>
+    </div>
+  </div>
+
+  <div class="pizzas">
+    <div class="box small_pizza">
+      <h2>Small Pizza</h2>
+      <img src="resources/pizza1.png" width="125" />
+      <h3>R49.00</h3>
+      <div>
+        Packed with premium toppings, it's the ideal
+        size for a solo indulgence.
+      </div>
+
+      <div class="addToCart">
+        <button class="add-to-cart-button"  @click="small++">Add to Cart</button>
+      </div>
+    </div>
+
+    <div class="box medium_pizza">
+      <h2>Medium Pizza</h2>
+      <img src="resources/pizza2.png" width="125" />
+      <h3>R89.00</h3>
+      <div>
+        Gather your friends or enjoy a feast for two with our medium pizza!
+        Loaded with fresh, flavorful ingredients and baked to perfection, it’s
+        just the right size for sharing.
+      </div>
+
+      <div class="addToCart">
+        <button class="add-to-cart-button"  @click="medium++">Add to Cart</button>
+      </div>
+    </div>
+
+    <div class="box large_pizza">
+      <h2>Large Pizza</h2>
+      <img src="resources/pizza3.png" width="125" />
+      <h3>R129.00</h3>
+      <div>
+        Feeding a crowd? Our large pizza is the ultimate choice! Generously
+        topped with your favorite ingredients and bursting with flavor, it's
+        designed to delight everyone at the table. Perfect for family dinners,
+        parties, and get-togethers—order now and be the hero of the meal!
+      </div>
+
+      <div class="addToCart">
+        <button class="add-to-cart-button" @click="largee++">Add to Cart</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="box contact_us">
+    <h2>Contact details</h2>
+    <div>Contact us at: 011 234 3453 info@perfectpizza.co.za</div>
+  </div>
+</div>
+</body>
+
+</html>
