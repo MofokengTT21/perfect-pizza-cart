@@ -23,24 +23,27 @@
   <div class="pizzaz">
     <div style="text-align: center; font-weight: bold">Shopping Cart</div>
     <div class="shopping-cart">
-      <div class="show-shopping-cart" x-show="small !=0 || medium !=0 || large !=0">
+      <div class="show-shopping-cart" x-show="small !=0 || medium !=0 || largee !=0">
         <h4>Pizza orders:</h4>
         <template x-if="small > 0">
           <div class="cart-list">
             <img class="cart-images" :src="smallPizzaImg">
             <div class="cart-list">
-              <div class="pizza-description">
+              <div class="cart-list">
+                <div class="pizza-description">
                 <h4>Small Pizza:</h4>
                 <p class="cart-description">Menu, Value Pizza</p>
               </div>
-              <div class="cart-list ">
+              <div class="cart-list cart-buttons" >
                 <button x-show="!checkout" class="quantity" @click="small--">-</button>
                 <p style="padding: 6px;" x-text="small"></p>
                 <button x-show="!checkout" class="quantity" @click="small++">+</button>
               </div>
-              <div style="margin-left: 3em;">
+              </div>
+              <div>
                 <b>R<span x-text="(small * 80.00).toFixed(2)"></span></b>
               </div>
+              
 
             </div>
           </div>
@@ -53,15 +56,16 @@
                 <h4>Medium Pizza:</h4>
                 <p class="cart-description">Traditional Pizza</p>
               </div>
-              <div class="cart-list ">
-                <button x-show="!checkout" class="quantity" @click="medium--">-</button>
-                <p style="padding: 6px;" x-text="medium"></p>
-                <button x-show="!checkout" class="quantity" @click="medium++">+</button>
+              <div class="cart-list">
+                <div class="cart-list cart-buttons">
+                  <button x-show="!checkout" class="quantity" @click="medium--">-</button>
+                  <p style="padding: 6px;" x-text="medium"></p>
+                  <button x-show="!checkout" class="quantity" @click="medium++">+</button>
+                </div>
               </div>
-              <div style="margin-left: 3em;">
+              <div>
                 <b>R<span x-text="(medium * 89.00).toFixed(2)"></span></b>
               </div>
-
             </div>
           </div>
         </template>
@@ -69,16 +73,18 @@
           <div class="cart-list">
             <img class="cart-images" :src="largePizzaImg">
             <div class="cart-list">
-              <div class="pizza-description">
-                <h4>Large Pizza:</h4>
-                <p class="cart-description">Chef's Best, Menu</p>
+              <div class="cart-list">
+                <div class="pizza-description">
+                  <h4>Large Pizza:</h4>
+                  <p class="cart-description">Chef's Best, Menu</p>
+                </div>
+                <div class="cart-list cart-buttons">
+                  <button x-show="!checkout" class="quantity" @click="largee--">-</button>
+                  <p style="padding: 6px;" x-text="largee"></p>
+                  <button x-show="!checkout" class="quantity" @click="largee++">+</button>
+                </div>
               </div>
-              <div class="cart-list ">
-                <button x-show="!checkout" class="quantity" @click="largee--">-</button>
-                <p style="padding: 6px;" x-text="largee"></p>
-                <button x-show="!checkout" class="quantity" @click="largee++">+</button>
-              </div>
-              <div style="margin-left: 3em;">
+              <div>
                 <b>R<span x-text="(largee * 129.00).toFixed(2)"></span></b>
               </div>
             </div>

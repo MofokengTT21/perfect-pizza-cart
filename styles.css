@@ -1,3 +1,6 @@
+h1 {
+    margin: 20px 11px;
+}
 .h-pizza {
     color: #965fe3;
 }
@@ -38,13 +41,6 @@ b {
     background-color: #965FE3;
 }
 
-@media (min-width: 960px) {
-
-    .pizzas {
-        display: flex;
-    }
-}
-
 .addToCart {
     margin-top:5em;
 }
@@ -74,6 +70,10 @@ b {
 .cart-list {
     display: flex;
     align-items:center;
+    flex-wrap: wrap;
+}
+.cart-buttons {
+    margin-right: 3em 
 }
 .quantity {
     height: 2.4em;
@@ -82,6 +82,7 @@ b {
     border-radius: 10px;
     background-color: rgb(9, 211, 9);
     color: white;
+    
 }
 
 .cart-images {
